@@ -23,7 +23,14 @@ Key Features
 
 Prerequisites
 
-- Python 3.x
+- Python 3. x
 - Pandas, NumPy, Scikit-Learn, TensorFlow/PyTorch
 - NLTK, SpaCy, or other NLP libraries
 - Matplotlib/Seaborn for visualization
+
+Model	Accuracy
+
+Logistic Regression =	0.87
+Decision Tree =	0.85
+Random Forest	= 0.89
+Naive Bayes =	0.86
