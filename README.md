@@ -34,3 +34,7 @@ Model	Accuracy
 - Decision Tree =	0.85
 - Random Forest	= 0.89
 - Naive Bayes =	0.86
+
+
+
+
