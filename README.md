@@ -30,7 +30,7 @@ Prerequisites
 
 Model	Accuracy
 
-Logistic Regression =	0.87
-Decision Tree =	0.85
-Random Forest	= 0.89
-Naive Bayes =	0.86
+- Logistic Regression =	0.87
+- Decision Tree =	0.85
+- Random Forest	= 0.89
+- Naive Bayes =	0.86
