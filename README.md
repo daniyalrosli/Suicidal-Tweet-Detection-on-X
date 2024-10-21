@@ -20,6 +20,9 @@ Model	Accuracy
 - Random Forest	= 0.89
 - Naive Bayes =	0.86
 
+API with Flask
+
+This project includes a Flask-based API that serves predictions for suicidal ideation based on user-submitted tweets. The API endpoints allow users to send tweets and receive predictions in real-time.
 
 
 
