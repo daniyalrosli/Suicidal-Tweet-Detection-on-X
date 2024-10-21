@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suicidal Tweet Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Suicidal Tweet Detection</h1>
+        <form id="tweetForm">
+            <label for="tweet">Enter Tweet:</label><br>
+            <textarea id="tweet" name="tweet" rows="4" cols="50" placeholder="Enter tweet here..."></textarea><br><br>
+            <button type="submit">Predict</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('tweetForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const tweet = document.getElementById('tweet').value;
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ tweet: tweet }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerHTML = `<p>Prediction: ${data.prediction}</p>`;
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerHTML = `<p>Error making prediction.</p>`;
+                });
+        });
+    </script>
+</body>
+
+</html>
