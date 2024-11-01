@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Tweet Detection - Suicidal Tweet Detection{% endblock %}
+
+{% block content %}
+<h1>Tweet Detection</h1>
+<form id="tweetForm">
+    <label for="tweet">Enter Tweet:</label><br>
+    <textarea id="tweet" name="tweet" rows="4" cols="50" placeholder="Enter tweet here..."></textarea><br><br>
+    <button type="submit">Predict</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+    // Handle form submission
+    document.getElementById('tweetForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const tweet = document.getElementById('tweet').value;
+
+        fetch('/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ tweet: tweet }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerHTML = `<p>Prediction: ${data.prediction}</p>`;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = `<p>Error making prediction.</p>`;
+            });
+    });
+</script>
+{% endblock %}

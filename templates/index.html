@@ -1,48 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suicidal Tweet Detection</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
+{% block title %}Home - Suicidal Tweet Detection{% endblock %}
 
-<body>
-    <div class="container">
-        <h1>Suicidal Tweet Detection</h1>
-        <form id="tweetForm">
-            <label for="tweet">Enter Tweet:</label><br>
-            <textarea id="tweet" name="tweet" rows="4" cols="50" placeholder="Enter tweet here..."></textarea><br><br>
-            <button type="submit">Predict</button>
-        </form>
+{% block content %}
+<div class="home-container">
+    <h1>Welcome to Suicidal Tweet Detection</h1>
+    <p>We are committed to providing a tool that can assist in the early detection of potentially suicidal tweets. By
+        leveraging the power of <strong>machine learning</strong> and <strong>natural language processing
+            (NLP)</strong>, this project aims to offer a valuable resource for mental health professionals, researchers,
+        and individuals concerned about online safety.</p>
 
-        <div id="result"></div>
+    <h2>Our Mission</h2>
+    <p>The rise of social media has brought both positive and negative effects on mental health. With millions of tweets
+        shared daily, it is crucial to identify potentially harmful content early. Our goal is to develop a reliable
+        detection system that can help in preventing suicide by flagging tweets that may indicate suicidal thoughts.</p>
+
+    <h2>How It Works</h2>
+    <p>Using advanced machine learning algorithms and NLP, we analyze tweet content to determine if it contains
+        indicators of suicidal ideation. This system is not intended to replace professional intervention, but rather to
+        aid in the detection process and alert the need for support.</p>
+
+    <h2>Get Started</h2>
+    <p>If you're ready to try our tool, head over to the <a href="{{ url_for('tweet_detection') }}">Tweet Detection</a>
+        section. Enter a tweet and our system will predict whether it may contain suicidal content.</p>
+
+    <div class="cta-section">
+        <p><strong>Explore the project further:</strong></p>
+        <a href="{{ url_for('about') }}" class="btn">Learn More About Us</a>
+        <a href="{{ url_for('tweet_detection') }}" class="btn btn-primary">Try Tweet Detection</a>
     </div>
-
-    <script>
-        // Handle form submission
-        document.getElementById('tweetForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const tweet = document.getElementById('tweet').value;
-
-            fetch('/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ tweet: tweet }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('result').innerHTML = `<p>Prediction: ${data.prediction}</p>`;
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    document.getElementById('result').innerHTML = `<p>Error making prediction.</p>`;
-                });
-        });
-    </script>
-</body>
-
-</html>
+</div>
+{% endblock %}

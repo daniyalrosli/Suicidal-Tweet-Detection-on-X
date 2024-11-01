@@ -15,6 +15,14 @@ with open('vectorizer.pkl', 'rb') as vec_file:
 def home():
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/tweet_detection')
+def tweet_detection():
+    return render_template('detect.html')
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json.get('tweet', '')
