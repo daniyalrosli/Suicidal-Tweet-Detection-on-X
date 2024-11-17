@@ -1,28 +1,84 @@
-This project aims to build a machine-learning model to detect suicidal ideation and related distress in tweets posted on X (previously known as Twitter). With the increasing use of social media platforms for expressing emotions, detecting suicidal content has become crucial in identifying individuals at risk and providing timely intervention.
+CareTweet: Suicidal Tweet Detection
 
-The project implements a Natural Language Processing (NLP)-based classification model to analyze tweet texts and categorize them as either “Suicidal” or “Non-Suicidal.” Additionally, it performs sentiment analysis to evaluate the emotional tone of the tweets further, providing insights into the level of distress by classifying tweets as positive, negative, or neutral. This dual-layered approach not only helps in detecting suicidal tendencies but also assists in understanding the underlying emotional states of users.
+Project Overview
 
-Key features of the project include:
+This project aims to build a machine learning-based system to detect suicidal ideation and related distress in tweets posted on X (formerly known as Twitter). With the rise in mental health concerns and the increasing use of social media as a platform for emotional expression, this tool can help identify at-risk individuals and enable timely intervention. The system incorporates both suicidal tweet detection and sentiment analysis for a comprehensive understanding of emotional states.
 
-- Preprocessing of tweet texts to clean and normalize the data.
-- Feature extraction using popular NLP techniques (e.g., TF-IDF, word embeddings).
-- Training a machine-learning model for suicidal ideation detection.
-- Sentiment analysis to categorize the emotional tone of tweets.
-- Evaluation of model performance using appropriate metrics like accuracy, precision, recall, and F1-score.
+Problem Statement
 
-This repository contains the code and resources for implementing both the suicidal tweet detection and sentiment analysis tasks, aimed at enhancing mental health support and timely interventions on social media.
+Social media platforms have become an outlet for people to share their emotions and struggles. Unfortunately, identifying individuals at risk of suicide through their posts remains challenging due to the high volume of data and the nuanced nature of language. Manual moderation is impractical, and traditional keyword-based methods lack the sophistication needed to understand context, making automated detection crucial.
+
+Objective
+
+ - Develop a machine-learning model to classify tweets as “Suicidal” or “Non-Suicidal.”
+ - Perform sentiment analysis on tweets to classify them as positive, negative, or neutral, providing deeper insights into users’ emotional states.
+ - Create a Flask-based API to provide real-time predictions.
+
+Preparation
+
+  1.	Data Collection:
+	•	Tweets were collected using Twitter’s API, focusing on datasets containing mental health and suicide-related keywords.
+	•	Open-source datasets such as the CLPsych 2015 dataset were also utilized.
+	
+  2.	Data Preprocessing
+	•	Removal of noise: URLs, hashtags, mentions, emojis, and special characters.
+	•	Normalization: Lowercasing and stemming/lemmatization of text.
+	•	Handling missing or imbalanced data using synthetic methods like SMOTE if needed.
+
+Development
+
+  1.	Feature Extraction
+	•	Implemented TF-IDF and word embeddings (e.g., GloVe) to represent tweet text as numeric vectors.
+	
+ 2.	Model Training
+	•	Built machine learning models using algorithms:
+	•	Logistic Regression (Accuracy: 0.87)
+	•	Decision Tree (Accuracy: 0.85)
+	•	Random Forest (Accuracy: 0.89)
+	•	Naive Bayes (Accuracy: 0.86)
+	
+ 3.	Sentiment Analysis
+	•	Performed sentiment classification (positive, negative, neutral) using a separate sentiment analysis pipeline.
+	
+ 4.	Flask API Development
+	•	Designed API endpoints to accept user-submitted tweets and return predictions in real time.
+
+Evaluation
+
+  Models were evaluated using metrics like:
+	•	Accuracy
+	•	Precision
+	•	Recall
+	•	F1-Score
+	•	Random Forest achieved the best performance with 0.89 accuracy, demonstrating high reliability in suicidal tweet detection.
+
+ Results and Deployment
+
+  Results:
+	
+ •	Successfully classified tweets into “Suicidal” or “Non-Suicidal” with high accuracy.
+	•	Sentiment analysis provided additional context by categorizing emotional tones as positive, negative, or neutral.
+	
+   Deployment:
+	•	The Flask API was deployed locally, enabling real-time predictions based on user input.
+	•	Integration-ready for social media monitoring tools or mental health applications.
 
 
-Model	Accuracy
+ Impact of the Project
 
-- Logistic Regression =	0.87
-- Decision Tree =	0.85
-- Random Forest	= 0.89
-- Naive Bayes =	0.86
+This project provides an essential tool for:
+	
+ •	Mental health organizations to monitor social media and identify individuals at risk of suicide.
+	•	Researchers to analyze emotional patterns in public discourse.
+	•	Policy-makers to make data-driven decisions for better mental health support.
 
-API with Flask
+By leveraging machine learning and NLP, this project contributes to making social media a safer and more supportive space for users.
 
-This project includes a Flask-based API that serves predictions for suicidal ideation based on user-submitted tweets. The API endpoints allow users to send tweets and receive predictions in real-time.
+
+
+
+
+
 
 
 
