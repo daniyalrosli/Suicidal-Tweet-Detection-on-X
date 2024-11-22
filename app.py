@@ -1,8 +1,12 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import the CORS module
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 app = Flask(__name__)
+
+# Enable CORS for all routes (you can configure this further as needed)
+CORS(app)
 
 # Load the trained model and vectorizer
 with open('log_reg_model.pkl', 'rb') as model_file:
@@ -13,15 +17,7 @@ with open('vectorizer.pkl', 'rb') as vec_file:
 
 @app.route('/')
 def home():
-    return render_template('index.html')
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/tweet_detection')
-def tweet_detection():
-    return render_template('detect.html')
+    return 'Home Page'
 
 @app.route('/predict', methods=['POST'])
 def predict():
