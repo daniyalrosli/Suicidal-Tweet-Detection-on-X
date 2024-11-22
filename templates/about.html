@@ -1,84 +1,146 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}About This Project - Suicidal Tweet Detection{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About This Project - Suicidal Tweet Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-{% block content %}
-<h1>About This Project</h1>
+<body class="bg-gray-100 text-gray-800 font-sans leading-relaxed">
 
-<p>This project aims to leverage the power of natural language processing (NLP) and machine learning to detect tweets
-    that may indicate suicidal thoughts or behaviors. Social media platforms, particularly Twitter, can be an outlet for
-    individuals in distress, and detecting these early signs can provide opportunities for timely intervention.</p>
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-white font-bold text-2xl">CareTweet</a>
+            <ul class="flex space-x-6 text-white">
+                <li><a href="#about" class="hover:underline">About</a></li>
+                <li><a href="#technologies" class="hover:underline">Technologies</a></li>
+                <li><a href="#methodology" class="hover:underline">Methodology</a></li>
+                <li><a href="#ethics" class="hover:underline">Ethics</a></li>
+                <li><a href="#improvements" class="hover:underline">Improvements</a></li>
+                <li><a href="#contact" class="hover:underline">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<h2>Project Objectives</h2>
-<ul>
-    <li><strong>Suicide Prevention:</strong> Help identify individuals who may be at risk of suicide and alert relevant
-        mental health professionals or support networks to provide immediate assistance.</li>
-    <li><strong>Raise Awareness:</strong> Increase awareness about mental health issues, especially those communicated
-        through social media.</li>
-    <li><strong>Data-Driven Solutions:</strong> Leverage data science techniques to provide insights and solutions to
-        complex mental health challenges.</li>
-</ul>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-600 text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-extrabold mb-6">About This Project</h1>
+            <p class="text-lg mb-8">This project aims to leverage the power of natural language processing (NLP) and
+                machine learning to detect tweets that may indicate suicidal thoughts or behaviors.</p>
+        </div>
+    </section>
 
-<h2>Technologies Used</h2>
-<p>Our solution is built using a combination of the following technologies:</p>
-<ul>
-    <li><strong>Natural Language Processing (NLP):</strong> To understand and process the structure and sentiment of
-        the text data (tweets) and extract key emotional indicators.</li>
-    <li><strong>Machine Learning:</strong> We employ advanced machine learning models, including deep learning, to
-        predict whether a tweet contains suicidal content based on historical data.</li>
-    <li><strong>Pre-trained Language Models:</strong> Models such as BERT and GPT-3 are utilized for their ability to
-        understand the nuances and context of human language.</li>
-</ul>
+    <!-- Project Objectives Section -->
+    <section id="about" class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-semibold mb-6">Project Objectives</h2>
+            <ul class="space-y-4 text-left max-w-2xl mx-auto">
+                <li><strong class="font-semibold">Suicide Prevention:</strong> Help identify individuals who may be at
+                    risk of suicide and alert relevant mental health professionals or support networks.</li>
+                <li><strong class="font-semibold">Raise Awareness:</strong> Increase awareness about mental health
+                    issues, especially those communicated through social media.</li>
+                <li><strong class="font-semibold">Data-Driven Solutions:</strong> Leverage data science techniques to
+                    provide insights and solutions to complex mental health challenges.</li>
+            </ul>
+        </div>
+    </section>
 
-<h2>Methodology</h2>
-<p>The core methodology follows a pipeline where tweet data is collected and preprocessed. After data cleaning and
-    tokenization, a machine learning classifier is trained on labeled data, with tweets categorized as either “suicidal”
-    or
-    “non-suicidal.” The trained model is then able to classify new, unseen tweets, providing a probability score for the
-    likelihood of suicidal content.</p>
-<p>Steps involved in the process:</p>
-<ol>
-    <li><strong>Data Collection:</strong> We gather anonymized tweet datasets from various public domains to train our
-        model.</li>
-    <li><strong>Preprocessing:</strong> Tweets undergo text cleaning to remove noise such as URLs, special characters,
-        and stopwords.</li>
-    <li><strong>Feature Extraction:</strong> We extract meaningful features using NLP techniques such as tokenization,
-        lemmatization, and sentiment analysis.</li>
-    <li><strong>Model Training:</strong> The classifier is trained using supervised learning techniques on labeled data
-        to identify patterns associated with suicidal language.</li>
-    <li><strong>Evaluation:</strong> The model is evaluated using various metrics like accuracy, precision, recall, and
-        F1-score to ensure reliability.</li>
-</ol>
+    <!-- Technologies Used Section -->
+    <section id="technologies" class="bg-gray-100 text-gray-800 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-semibold mb-6">Technologies Used</h2>
+            <p class="text-lg mb-8">Our solution is built using a combination of the following technologies:</p>
+            <ul class="space-y-4 text-left max-w-2xl mx-auto">
+                <li><strong class="font-semibold">Natural Language Processing (NLP):</strong> To understand and process
+                    the structure and sentiment of the text data (tweets) and extract key emotional indicators.</li>
+                <li><strong class="font-semibold">Machine Learning:</strong> We employ advanced machine learning models,
+                    including deep learning, to predict whether a tweet contains suicidal content based on historical
+                    data.</li>
+                <li><strong class="font-semibold">Pre-trained Language Models:</strong> Models such as BERT and GPT-3
+                    are utilized for their ability to understand the nuances and context of human language.</li>
+            </ul>
+        </div>
+    </section>
 
-<h2>Ethical Considerations</h2>
-<p>While this project can play a significant role in suicide prevention, it’s essential to recognize the ethical
-    responsibilities involved:</p>
-<ul>
-    <li><strong>Privacy:</strong> User data must be handled with the highest standards of privacy and anonymization.
-        Our project does not collect or use personally identifiable information.</li>
-    <li><strong>False Positives/Negatives:</strong> False predictions could either create unnecessary panic or miss
-        actual warning signs. We continually improve the model to reduce errors while acknowledging that it should
-        complement human judgment rather than replace it.</li>
-    <li><strong>Intervention and Support:</strong> This tool is meant to aid mental health professionals, not act as a
-        substitute for qualified mental health intervention. The model is designed to raise red flags and connect users
-        with
-        real help.</li>
-</ul>
+    <!-- Methodology Section -->
+    <section id="methodology" class="bg-white text-gray-800 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-semibold mb-6">Methodology</h2>
+            <p class="text-lg mb-8">The core methodology follows a pipeline where tweet data is collected and
+                preprocessed. After data cleaning and tokenization, a machine learning classifier is trained on labeled
+                data, with tweets categorized as either “suicidal” or “non-suicidal.” The trained model is then able to
+                classify new, unseen tweets, providing a probability score for the likelihood of suicidal content.</p>
+            <p class="text-lg font-semibold">Steps involved in the process:</p>
+            <ol class="list-decimal list-inside space-y-4 max-w-2xl mx-auto text-left">
+                <li><strong>Data Collection:</strong> We gather anonymized tweet datasets from various public domains to
+                    train our model.</li>
+                <li><strong>Preprocessing:</strong> Tweets undergo text cleaning to remove noise such as URLs, special
+                    characters, and stopwords.</li>
+                <li><strong>Feature Extraction:</strong> We extract meaningful features using NLP techniques such as
+                    tokenization, lemmatization, and sentiment analysis.</li>
+                <li><strong>Model Training:</strong> The classifier is trained using supervised learning techniques on
+                    labeled data to identify patterns associated with suicidal language.</li>
+                <li><strong>Evaluation:</strong> The model is evaluated using various metrics like accuracy, precision,
+                    recall, and F1-score to ensure reliability.</li>
+            </ol>
+        </div>
+    </section>
 
-<h2>Future Improvements</h2>
-<p>Although the project shows promise, there are several areas for further improvement:</p>
-<ul>
-    <li><strong>Multilingual Support:</strong> Expanding the model to support multiple languages and dialects to help a
-        broader audience globally.</li>
-    <li><strong>Contextual Understanding:</strong> Improving the model’s ability to understand sarcasm, humor, or
-        indirect expressions of distress which can often be misinterpreted by text-only models.</li>
-    <li><strong>Real-time Monitoring:</strong> Enhancing the system to provide real-time monitoring and detection to
-        alert for immediate intervention.</li>
-</ul>
+    <!-- Ethical Considerations Section -->
+    <section id="ethics" class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-semibold mb-6">Ethical Considerations</h2>
+            <p class="text-lg mb-8">While this project can play a significant role in suicide prevention, it’s essential
+                to recognize the ethical responsibilities involved:</p>
+            <ul class="space-y-4 text-left max-w-2xl mx-auto">
+                <li><strong class="font-semibold">Privacy:</strong> User data must be handled with the highest standards
+                    of privacy and anonymization. Our project does not collect or use personally identifiable
+                    information.</li>
+                <li><strong class="font-semibold">False Positives/Negatives:</strong> False predictions could either
+                    create unnecessary panic or miss actual warning signs. We continually improve the model to reduce
+                    errors while acknowledging that it should complement human judgment rather than replace it.</li>
+                <li><strong class="font-semibold">Intervention and Support:</strong> This tool is meant to aid mental
+                    health professionals, not act as a substitute for qualified mental health intervention. The model is
+                    designed to raise red flags and connect users with real help.</li>
+            </ul>
+        </div>
+    </section>
 
-<h2>Call to Action</h2>
-<p>We encourage collaboration from mental health professionals, researchers, and data scientists to improve this
-    project. Together, we can develop more robust solutions for mental health issues and save lives through timely
-    intervention.</p>
+    <!-- Future Improvements Section -->
+    <section id="improvements" class="bg-white text-gray-800 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-semibold mb-6">Future Improvements</h2>
+            <p class="text-lg mb-8">Although the project shows promise, there are several areas for further improvement:
+            </p>
+            <ul class="space-y-4 text-left max-w-2xl mx-auto">
+                <li><strong class="font-semibold">Multilingual Support:</strong> Expanding the model to support multiple
+                    languages and dialects to help a broader audience globally.</li>
+                <li><strong class="font-semibold">Contextual Understanding:</strong> Improving the model’s ability to
+                    understand sarcasm, humor, or indirect expressions of distress which can often be misinterpreted by
+                    text-only models.</li>
+                <li><strong class="font-semibold">Real-time Monitoring:</strong> Enhancing the system to provide
+                    real-time monitoring and detection to alert for immediate intervention.</li>
+            </ul>
+        </div>
+    </section>
 
-{% endblock %}
+    <!-- Call to Action Section -->
+    <section id="contact" class="bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-600 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-semibold mb-6">Call to Action</h2>
+            <p class="text-lg mb-8">We encourage collaboration from mental health professionals, researchers, and data
+                scientists to improve this project. Together, we can develop more robust solutions for mental health
+                issues and save lives through timely intervention.</p>
+            <a href="mailto:contact@caretweet.com"
+                class="bg-white text-gray-800 py-2 px-6 rounded-full text-lg font-semibold hover:bg-gray-200">Contact
+                Us</a>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -3,31 +3,49 @@
 {% block title %}Home - Suicidal Tweet Detection{% endblock %}
 
 {% block content %}
-<div class="home-container">
-    <h1>Welcome to Suicidal Tweet Detection</h1>
-    <p>We are committed to providing a tool that can assist in the early detection of potentially suicidal tweets. By
-        leveraging the power of <strong>machine learning</strong> and <strong>natural language processing
-            (NLP)</strong>, this project aims to offer a valuable resource for mental health professionals, researchers,
-        and individuals concerned about online safety.</p>
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-500 to-teal-400 text-white text-center py-20">
+    <h1 class="text-4xl font-bold mb-4">Welcome to Suicidal Tweet Detection</h1>
+    <p class="text-lg max-w-3xl mx-auto mb-8">We are committed to providing a tool that can assist in the early
+        detection of potentially suicidal tweets. By leveraging the power of <strong>machine learning</strong> and
+        <strong>natural language processing (NLP)</strong>, this project aims to offer a valuable resource for mental
+        health professionals, researchers, and individuals concerned about online safety.</p>
+    <a href="{{ url_for('tweet_detection') }}"
+        class="inline-block bg-teal-600 hover:bg-teal-500 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300">Start
+        Tweet Detection</a>
+</section>
 
-    <h2>Our Mission</h2>
-    <p>The rise of social media has brought both positive and negative effects on mental health. With millions of tweets
-        shared daily, it is crucial to identify potentially harmful content early. Our goal is to develop a reliable
-        detection system that can help in preventing suicide by flagging tweets that may indicate suicidal thoughts.</p>
+<!-- Mission Section -->
+<section class="py-16 px-8 bg-gray-50 text-center">
+    <h2 class="text-3xl font-semibold mb-6">Our Mission</h2>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto">The rise of social media has brought both positive and negative
+        effects on mental health. With millions of tweets shared daily, it is crucial to identify potentially harmful
+        content early. Our goal is to develop a reliable detection system that can help in preventing suicide by
+        flagging tweets that may indicate suicidal thoughts.</p>
+</section>
 
-    <h2>How It Works</h2>
-    <p>Using advanced machine learning algorithms and NLP, we analyze tweet content to determine if it contains
-        indicators of suicidal ideation. This system is not intended to replace professional intervention, but rather to
-        aid in the detection process and alert the need for support.</p>
+<!-- How It Works Section -->
+<section class="py-16 bg-white text-center">
+    <h2 class="text-3xl font-semibold mb-6">How It Works</h2>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-8">Using advanced machine learning algorithms and NLP, we
+        analyze tweet content to determine if it contains indicators of suicidal ideation. This system is not intended
+        to replace professional intervention, but rather to aid in the detection process and alert the need for support.
+    </p>
+    <a href="{{ url_for('about') }}"
+        class="inline-block bg-teal-600 hover:bg-teal-500 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300">Learn
+        More</a>
+</section>
 
-    <h2>Get Started</h2>
-    <p>If you're ready to try our tool, head over to the <a href="{{ url_for('tweet_detection') }}">Tweet Detection</a>
-        section. Enter a tweet and our system will predict whether it may contain suicidal content.</p>
-
-    <div class="cta-section">
-        <p><strong>Explore the project further:</strong></p>
-        <a href="{{ url_for('about') }}" class="btn">Learn More About Us</a>
-        <a href="{{ url_for('tweet_detection') }}" class="btn btn-primary">Try Tweet Detection</a>
+<!-- Call to Action Section -->
+<section class="py-12 bg-teal-100 text-center">
+    <p class="text-lg text-gray-700 mb-6">Ready to try our tool?</p>
+    <div class="flex justify-center gap-6">
+        <a href="{{ url_for('about') }}"
+            class="bg-teal-600 hover:bg-teal-500 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300">Learn
+            More About Us</a>
+        <a href="{{ url_for('tweet_detection') }}"
+            class="bg-teal-600 hover:bg-teal-500 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300">Try
+            Tweet Detection</a>
     </div>
-</div>
+</section>
 {% endblock %}
