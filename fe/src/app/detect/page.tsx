@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const Detect = () => {
   const [tweet, setTweet] = useState("");
@@ -142,6 +143,16 @@ const Detect = () => {
 
         {/* Recommendations Section */}
         {result && renderRecommendations()}
+
+        {/* Home Button */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/"
+            className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg text-lg font-semibold transition-colors duration-300"
+          >
+            Back to Homepage
+          </Link>
+        </div>
       </div>
     </div>
   );
