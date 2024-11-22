@@ -1,14 +1,11 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 const Home = () => {
   return (
     <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-      {/* Navbar */}
-      
-
       {/* Hero Section */}
-      <section
+      <header
         id="home"
         className="h-screen flex flex-col items-center justify-center text-center px-6"
       >
@@ -19,19 +16,20 @@ const Home = () => {
           Harnessing AI to create a safer online environment.
         </p>
         <div className="flex gap-4">
-        
-
-<div className="flex gap-4">
-  <Link
-    href="/detect"
-    className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-md text-lg"
-  >
-    Try our detection
-  </Link>
-</div>
-        
+          <Link
+            href="/detect"
+            className="bg-blue-500 hover:bg-blue-600 hover:scale-105 transition-transform px-6 py-3 rounded-md text-lg shadow-lg"
+          >
+            Try our detection
+          </Link>
+          <a
+            href="#features"
+            className="bg-gray-700 hover:bg-gray-600 hover:scale-105 transition-transform px-6 py-3 rounded-md text-lg shadow-lg"
+          >
+            Learn More
+          </a>
         </div>
-      </section>
+      </header>
 
       {/* Features Section */}
       <section id="features" className="py-16 px-8">
@@ -39,17 +37,41 @@ const Home = () => {
           Why CareTweet?
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {['Real-time Analysis', 'Sentiment Analysis', 'Privacy-Focused', 'Mental Health Advocacy'].map(
-            (feature) => (
-              <div key={feature} className="bg-gray-700 p-6 rounded-lg text-center">
-                <div className="text-3xl mb-4">🌟</div>
-                <h3 className="text-xl font-semibold mb-2">{feature}</h3>
-                <p className="text-gray-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-              </div>
-            )
-          )}
+          {[
+            {
+              title: "Real-time Analysis",
+              icon: "⚡",
+              description:
+                "Analyze tweets instantly for potential risks using advanced AI.",
+            },
+            {
+              title: "Sentiment Analysis",
+              icon: "😊",
+              description:
+                "Understand tweet sentiments and categorize emotional states effectively.",
+            },
+            {
+              title: "Privacy-Focused",
+              icon: "🔒",
+              description:
+                "Prioritizing data privacy to ensure user trust and safety.",
+            },
+            {
+              title: "Mental Health Advocacy",
+              icon: "🤝",
+              description:
+                "Supporting mental health professionals with actionable insights.",
+            },
+          ].map(({ title, icon, description }) => (
+            <div
+              key={title}
+              className="bg-gray-700 p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div className="text-4xl mb-4">{icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{title}</h3>
+              <p className="text-gray-300">{description}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -60,12 +82,14 @@ const Home = () => {
         </h2>
         <div className="space-y-8">
           {[
-            'Analyze tweets using NLP-based models.',
-            'Classify tweets as Suicidal or Non-Suicidal.',
-            'Provide actionable insights to mental health professionals.',
+            "Analyze tweets using NLP-based models.",
+            "Classify tweets as Suicidal or Non-Suicidal.",
+            "Provide actionable insights to mental health professionals.",
           ].map((step, index) => (
             <div key={index} className="flex items-start space-x-4">
-              <div className="text-blue-500 text-3xl">{index + 1}.</div>
+              <div className="text-blue-500 text-3xl font-bold">
+                {index + 1}.
+              </div>
               <p className="text-lg">{step}</p>
             </div>
           ))}
@@ -81,18 +105,18 @@ const Home = () => {
           <input
             type="text"
             placeholder="Name"
-            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white"
+            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
           <input
             type="email"
             placeholder="Email"
-            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white"
+            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
           <textarea
             placeholder="Message"
-            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white h-32"
+            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white h-32 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           ></textarea>
-          <button className="w-full bg-blue-500 hover:bg-blue-600 px-4 py-3 rounded-md text-lg">
+          <button className="w-full bg-blue-500 hover:bg-blue-600 hover:scale-105 transition-transform px-4 py-3 rounded-md text-lg">
             Submit Inquiry
           </button>
         </form>

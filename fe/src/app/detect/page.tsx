@@ -1,25 +1,25 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const Detect = () => {
-  const [tweet, setTweet] = useState('');
+  const [tweet, setTweet] = useState("");
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   // Function to handle tweet submission
   const handleSubmit = async () => {
-    if (tweet.trim() === '') return;
+    if (tweet.trim() === "") return;
 
     setLoading(true);
     setResult(null);
 
     try {
       // Assuming Flask app is running at http://localhost:5000
-      const response = await fetch('http://127.0.0.1:5000/predict', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:5000/predict", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ tweet }),
       });
@@ -28,13 +28,66 @@ const Detect = () => {
       if (response.ok) {
         setResult(data.prediction); // assuming prediction is returned as 'Potentially Suicidal' or 'Non-Suicidal'
       } else {
-        setResult(data.error || 'Error occurred. Please try again.');
+        setResult(data.error || "Error occurred. Please try again.");
       }
     } catch (error) {
-      setResult('Error occurred. Please try again.');
+      setResult("Error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  // Recommendation logic
+  const renderRecommendations = () => {
+    if (result === "Potentially Suicidal") {
+      return (
+        <div className="text-left bg-gray-800 p-6 rounded-lg mt-6">
+          <h3 className="text-2xl font-semibold text-red-500 mb-4">
+            Recommended Actions
+          </h3>
+          <ul className="space-y-2">
+            <li>📞 Contact a suicide prevention hotline:</li>
+            <ul className="ml-6 list-disc text-blue-400">
+              <li>
+                <a
+                  href="https://www.befrienders.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Befrienders Worldwide
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://suicidepreventionlifeline.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Suicide Prevention Lifeline (USA)
+                </a>
+              </li>
+            </ul>
+            <li>💬 Talk to a trusted friend or family member.</li>
+            <li>📅 Schedule an appointment with a mental health professional.</li>
+          </ul>
+        </div>
+      );
+    } else if (result === "Non-Suicidal") {
+      return (
+        <div className="text-left bg-gray-800 p-6 rounded-lg mt-6">
+          <h3 className="text-2xl font-semibold text-green-500 mb-4">
+            Wellness Tips
+          </h3>
+          <ul className="space-y-2">
+            <li>🌱 Practice mindfulness through meditation or yoga.</li>
+            <li>✍️ Start a gratitude journal to note positive moments daily.</li>
+            <li>🤝 Engage in uplifting activities with loved ones.</li>
+            <li>📖 Read books or listen to podcasts about mental wellness.</li>
+          </ul>
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -44,7 +97,8 @@ const Detect = () => {
           CareTweet: Suicidal Ideation Detection
         </h1>
         <p className="text-center text-lg mb-12">
-          Enter a tweet to detect potential suicidal ideation. The model classifies tweets as 'Suicidal' or 'Non-Suicidal.'
+          Enter a tweet to detect potential suicidal ideation. The model
+          classifies tweets as 'Suicidal' or 'Non-Suicidal.'
         </p>
 
         {/* Text Input Area */}
@@ -63,18 +117,31 @@ const Detect = () => {
             className="w-full bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg text-lg font-semibold transition-colors duration-300 disabled:opacity-50"
             disabled={loading}
           >
-            {loading ? 'Detecting...' : 'Detect Tweet'}
+            {loading ? "Detecting..." : "Detect Tweet"}
           </button>
         </div>
 
         {/* Results Section */}
         <div className="mt-8 text-center">
           {result && (
-            <div className={`text-2xl font-semibold ${result === 'Potentially Suicidal' ? 'text-red-500' : 'text-green-500'}`}>
-              <p>{result === 'Potentially Suicidal' ? 'Warning: Suicidal Ideation Detected' : 'No Suicidal Ideation Detected'}</p>
+            <div
+              className={`text-2xl font-semibold ${
+                result === "Potentially Suicidal"
+                  ? "text-red-500"
+                  : "text-green-500"
+              }`}
+            >
+              <p>
+                {result === "Potentially Suicidal"
+                  ? "Warning: Suicidal Ideation Detected"
+                  : "No Suicidal Ideation Detected"}
+              </p>
             </div>
           )}
         </div>
+
+        {/* Recommendations Section */}
+        {result && renderRecommendations()}
       </div>
     </div>
   );
