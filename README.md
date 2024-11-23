@@ -82,6 +82,7 @@ Why I'm doing this project :
 - Gain new knowledge (text mining techniques, sentiment analysis pipeline, textblob, wordcloud, etc..)
 - To hone my data science skills (EDA, data preprocessing, machine learning,etc..)
 - Enhance my full-stack development skills (next.js,flask)
+- For my uni projects as well
 
 
 
