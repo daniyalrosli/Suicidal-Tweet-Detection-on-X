@@ -31,7 +31,7 @@ const Detect = () => {
       } else {
         setResult(data.error || "Error occurred. Please try again.");
       }
-    } catch (error) {
+    } catch {
       setResult("Error occurred. Please try again.");
     } finally {
       setLoading(false);
@@ -99,7 +99,7 @@ const Detect = () => {
         </h1>
         <p className="text-center text-lg mb-12">
           Enter a tweet to detect potential suicidal ideation. The model
-          classifies tweets as 'Suicidal' or 'Non-Suicidal.'
+          classifies tweets as &apos;Suicidal&apos; or &apos;Non-Suicidal.&apos;
         </p>
 
         {/* Text Input Area */}
