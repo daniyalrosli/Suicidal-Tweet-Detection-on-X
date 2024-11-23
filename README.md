@@ -74,7 +74,14 @@ This project provides an essential tool for:
  - Researchers will analyze emotional patterns in public discourse.
  - Policy-makers to make data-driven decisions for better mental health support.
 
-By leveraging machine learning and NLP, this project contributes to making social media a safer and more supportive space for users.
+This project leverages machine learning and NLP to make social media a safer and more supportive space for users.
+
+
+Why I'm doing this project :
+
+- Gain new knowledge (text mining techniques, sentiment analysis pipeline, textblob, wordcloud, etc..)
+- To hone my data science skills (EDA, data preprocessing, machine learning,etc..)
+- Enhance my full-stack development skills (next.js,flask)
 
 
 
