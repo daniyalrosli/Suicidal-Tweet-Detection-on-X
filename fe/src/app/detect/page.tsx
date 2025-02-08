@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { AlertTriangle, ArrowLeft, Shield, Heart, Send, Loader2 } from "lucide-react";
 
 const Detect = () => {
   const [tweet, setTweet] = useState("");
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Function to handle tweet submission
   const handleSubmit = async () => {
     if (tweet.trim() === "") return;
 
@@ -16,7 +16,6 @@ const Detect = () => {
     setResult(null);
 
     try {
-   
       const response = await fetch("http://127.0.0.1:5000/predict", {
         method: "POST",
         headers: {
@@ -27,7 +26,7 @@ const Detect = () => {
 
       const data = await response.json();
       if (response.ok) {
-        setResult(data.prediction); // assuming prediction is returned as 'Potentially Suicidal' or 'Non-Suicidal'
+        setResult(data.prediction);
       } else {
         setResult(data.error || "Error occurred. Please try again.");
       }
@@ -38,53 +37,87 @@ const Detect = () => {
     }
   };
 
-  // Recommendation logic
   const renderRecommendations = () => {
     if (result === "Potentially Suicidal") {
       return (
-        <div className="text-left bg-gray-800 p-6 rounded-lg mt-6">
-          <h3 className="text-2xl font-semibold text-red-500 mb-4">
-            Recommended Actions
-          </h3>
-          <ul className="space-y-2">
-            <li>📞 Contact a suicide prevention hotline:</li>
-            <ul className="ml-6 list-disc text-blue-400">
-              <li>
+        <div className="animate-fade-in bg-gradient-to-r from-red-500/10 to-red-500/5 border border-red-500/20 p-8 rounded-2xl mt-8 backdrop-blur-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <AlertTriangle className="w-6 h-6 text-red-400" />
+            <h3 className="text-2xl font-semibold text-red-400">
+              Immediate Support Available
+            </h3>
+          </div>
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-lg font-medium text-red-300 mb-3">24/7 Crisis Support</h4>
+              <div className="grid sm:grid-cols-2 gap-4">
                 <a
                   href="https://www.befrienders.org"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-gray-800/50 hover:bg-gray-800 p-4 rounded-xl transition-all hover:scale-105"
                 >
-                  Befrienders Worldwide
+                  <Shield className="w-5 h-5 text-red-400" />
+                  <span>Befrienders Worldwide</span>
                 </a>
-              </li>
-              <li>
                 <a
                   href="https://suicidepreventionlifeline.org/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-gray-800/50 hover:bg-gray-800 p-4 rounded-xl transition-all hover:scale-105"
                 >
-                  Suicide Prevention Lifeline (USA)
+                  <Heart className="w-5 h-5 text-red-400" />
+                  <span>Suicide Prevention Lifeline</span>
                 </a>
-              </li>
-            </ul>
-            <li>💬 Talk to a trusted friend or family member.</li>
-            <li>📅 Schedule an appointment with a mental health professional.</li>
-          </ul>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-lg font-medium text-red-300 mb-3">Recommended Steps</h4>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-center gap-3">
+                  <span className="w-8 h-8 flex items-center justify-center bg-gray-800/50 rounded-lg">💬</span>
+                  Reach out to a trusted friend or family member
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-8 h-8 flex items-center justify-center bg-gray-800/50 rounded-lg">📅</span>
+                  Schedule an appointment with a mental health professional
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-8 h-8 flex items-center justify-center bg-gray-800/50 rounded-lg">🌟</span>
+                  Remember: You are not alone in this journey
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       );
     } else if (result === "Non-Suicidal") {
       return (
-        <div className="text-left bg-gray-800 p-6 rounded-lg mt-6">
-          <h3 className="text-2xl font-semibold text-green-500 mb-4">
-            Wellness Tips
-          </h3>
-          <ul className="space-y-2">
-            <li>🌱 Practice mindfulness through meditation or yoga.</li>
-            <li>✍️ Start a gratitude journal to note positive moments daily.</li>
-            <li>🤝 Engage in uplifting activities with loved ones.</li>
-            <li>📖 Read books or listen to podcasts about mental wellness.</li>
-          </ul>
+        <div className="animate-fade-in bg-gradient-to-r from-green-500/10 to-green-500/5 border border-green-500/20 p-8 rounded-2xl mt-8 backdrop-blur-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <Heart className="w-6 h-6 text-green-400" />
+            <h3 className="text-2xl font-semibold text-green-400">
+              Wellness Resources
+            </h3>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {[
+              { emoji: "🌱", title: "Mindfulness", desc: "Practice daily meditation or yoga" },
+              { emoji: "✍️", title: "Journaling", desc: "Document your daily gratitude moments" },
+              { emoji: "🤝", title: "Connection", desc: "Engage with supportive communities" },
+              { emoji: "📖", title: "Learning", desc: "Explore mental wellness resources" }
+            ].map((item) => (
+              <div key={item.title} className="bg-gray-800/50 p-4 rounded-xl">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="w-8 h-8 flex items-center justify-center bg-gray-700/50 rounded-lg">
+                    {item.emoji}
+                  </span>
+                  <h4 className="font-medium text-green-300">{item.title}</h4>
+                </div>
+                <p className="text-gray-300 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       );
     }
@@ -92,67 +125,77 @@ const Detect = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen">
-      <div className="container mx-auto py-12 px-6">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">
-          CareTweet: Suicidal Ideation Detection
-        </h1>
-        <p className="text-center text-lg mb-12">
-          Enter a tweet to detect potential suicidal ideation. The model
-          classifies tweets as &apos;Suicidal&apos; or &apos;Non-Suicidal.&apos;
-        </p>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
+      <div className="max-w-4xl mx-auto py-12 px-6">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-12 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back to Homepage
+        </Link>
 
-        {/* Text Input Area */}
-        <div className="max-w-lg mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
+            Tweet Analysis
+          </h1>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Enter a tweet below for analysis. Our AI model will assess the content
+            and provide appropriate resources and recommendations.
+          </p>
+        </div>
+
+        <div className="bg-gray-800/50 border border-gray-700/50 p-8 rounded-2xl backdrop-blur-sm">
           <textarea
             value={tweet}
             onChange={(e) => setTweet(e.target.value)}
-            placeholder="Enter tweet here..."
-            className="w-full p-4 mb-4 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows={5}
-          ></textarea>
+            placeholder="Enter tweet content here..."
+            className="w-full p-4 mb-6 h-32 rounded-xl bg-gray-900/50 border border-gray-700/50 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none transition-all resize-none"
+          />
 
-          {/* Submit Button */}
           <button
             onClick={handleSubmit}
-            className="w-full bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg text-lg font-semibold transition-colors duration-300 disabled:opacity-50"
-            disabled={loading}
+            disabled={loading || tweet.trim() === ""}
+            className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:hover:bg-blue-600 px-6 py-4 rounded-xl text-lg font-medium transition-all hover:scale-105 flex items-center justify-center gap-2"
           >
-            {loading ? "Detecting..." : "Detect Tweet"}
+            {loading ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Analyzing...
+              </>
+            ) : (
+              <>
+                <Send className="w-5 h-5" />
+                Analyze Tweet
+              </>
+            )}
           </button>
         </div>
 
-        {/* Results Section */}
-        <div className="mt-8 text-center">
-          {result && (
+        {result && (
+          <div className="animate-fade-in mt-8 text-center">
             <div
-              className={`text-2xl font-semibold ${
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl ${
                 result === "Potentially Suicidal"
-                  ? "text-red-500"
-                  : "text-green-500"
+                  ? "bg-red-500/20 text-red-400"
+                  : "bg-green-500/20 text-green-400"
               }`}
             >
-              <p>
+              {result === "Potentially Suicidal" ? (
+                <AlertTriangle className="w-5 h-5" />
+              ) : (
+                <Heart className="w-5 h-5" />
+              )}
+              <span className="text-lg font-medium">
                 {result === "Potentially Suicidal"
-                  ? "Warning: Suicidal Ideation Detected"
-                  : "No Suicidal Ideation Detected"}
-              </p>
+                  ? "Potential Risk Detected"
+                  : "No Immediate Risk Detected"}
+              </span>
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* Recommendations Section */}
-        {result && renderRecommendations()}
-
-        {/* Home Button */}
-        <div className="mt-12 text-center">
-          <Link
-            href="/"
-            className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg text-lg font-semibold transition-colors duration-300"
-          >
-            Back to Homepage
-          </Link>
-        </div>
+        {renderRecommendations()}
       </div>
     </div>
   );

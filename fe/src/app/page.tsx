@@ -1,130 +1,163 @@
 import React from "react";
 import Link from "next/link";
+import { Brain, Lock, Heart, ArrowRight, MessageCircle, Activity, Users } from "lucide-react";
 
 const Home = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Hero Section */}
-      <header
-        id="home"
-        className="h-screen flex flex-col items-center justify-center text-center px-6"
-      >
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          CareTweet: Detecting Suicidal Ideation on X with AI
-        </h1>
-        <p className="text-lg md:text-xl mb-8">
-          Harnessing AI to create a safer online environment.
-        </p>
-        <div className="flex gap-4">
-          <Link
-            href="/detect"
-            className="bg-blue-500 hover:bg-blue-600 hover:scale-105 transition-transform px-6 py-3 rounded-md text-lg shadow-lg"
-          >
-            Try our detection
-          </Link>
-          <a
-            href="#features"
-            className="bg-gray-700 hover:bg-gray-600 hover:scale-105 transition-transform px-6 py-3 rounded-md text-lg shadow-lg"
-          >
-            Learn More
-          </a>
+      <header className="h-screen flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-blue-500/10 backdrop-blur-3xl"></div>
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
+            CareTweet
+          </h1>
+          <p className="text-2xl md:text-3xl font-light mb-4 text-gray-200">
+            Detecting Suicidal Ideation on X with AI
+          </p>
+          <p className="text-lg md:text-xl mb-12 text-gray-300 max-w-2xl mx-auto">
+            Using advanced artificial intelligence to create a safer online environment and support mental health professionals.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              href="/detect"
+              className="group bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg text-lg font-medium shadow-lg shadow-blue-500/20 flex items-center gap-2 transition-all hover:scale-105"
+            >
+              Try Detection
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <a
+              href="#features"
+              className="bg-gray-700/50 hover:bg-gray-700 px-8 py-4 rounded-lg text-lg font-medium backdrop-blur-sm transition-all hover:scale-105"
+            >
+              Learn More
+            </a>
+          </div>
         </div>
       </header>
 
       {/* Features Section */}
-      <section id="features" className="py-16 px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-          Why CareTweet?
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            {
-              title: "Real-time Analysis",
-              icon: "⚡",
-              description:
-                "Analyze tweets instantly for potential risks using advanced AI.",
-            },
-            {
-              title: "Sentiment Analysis",
-              icon: "😊",
-              description:
-                "Understand tweet sentiments and categorize emotional states effectively.",
-            },
-            {
-              title: "Privacy-Focused",
-              icon: "🔒",
-              description:
-                "Prioritizing data privacy to ensure user trust and safety.",
-            },
-            {
-              title: "Mental Health Advocacy",
-              icon: "🤝",
-              description:
-                "Supporting mental health professionals with actionable insights.",
-            },
-          ].map(({ title, icon, description }) => (
-            <div
-              key={title}
-              className="bg-gray-700 p-6 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div className="text-4xl mb-4">{icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{title}</h3>
-              <p className="text-gray-300">{description}</p>
-            </div>
-          ))}
+      <section id="features" className="py-24 px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            Why Choose <span className="text-blue-500">CareTweet</span>?
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: "Real-time Analysis",
+                icon: Activity,
+                description:
+                  "Process and analyze social media content instantly using state-of-the-art AI models.",
+              },
+              {
+                title: "Advanced NLP",
+                icon: Brain,
+                description:
+                  "Leverage sophisticated natural language processing to understand complex emotional contexts.",
+              },
+              {
+                title: "Privacy First",
+                icon: Lock,
+                description:
+                  "Enterprise-grade security and privacy measures to protect sensitive data.",
+              },
+              {
+                title: "Professional Support",
+                icon: Heart,
+                description:
+                  "Empower mental health professionals with actionable insights and early detection.",
+              },
+            ].map(({ title, icon: Icon, description }) => (
+              <div
+                key={title}
+                className="group bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl border border-gray-700/50 hover:border-blue-500/50 transition-all hover:shadow-lg hover:shadow-blue-500/10"
+              >
+                <div className="bg-blue-500/10 p-4 rounded-lg w-fit mb-6 group-hover:bg-blue-500/20 transition-colors">
+                  <Icon className="w-8 h-8 text-blue-400" />
+                </div>
+                <h3 className="text-xl font-semibold mb-4">{title}</h3>
+                <p className="text-gray-300 leading-relaxed">{description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-16 px-8 bg-gray-900">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-          How Does CareTweet Work?
-        </h2>
-        <div className="space-y-8">
-          {[
-            "Analyze tweets using NLP-based models.",
-            "Classify tweets as Suicidal or Non-Suicidal.",
-            "Provide actionable insights to mental health professionals.",
-          ].map((step, index) => (
-            <div key={index} className="flex items-start space-x-4">
-              <div className="text-blue-500 text-3xl font-bold">
-                {index + 1}.
+      <section id="how-it-works" className="py-24 px-8 bg-gray-900/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            How CareTweet <span className="text-blue-500">Works</span>
+          </h2>
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              {
+                icon: MessageCircle,
+                title: "Content Analysis",
+                description: "Advanced NLP models process social media content in real-time",
+              },
+              {
+                icon: Brain,
+                title: "Risk Assessment",
+                description: "AI classifies content and identifies potential risk patterns",
+              },
+              {
+                icon: Users,
+                title: "Professional Insights",
+                description: "Provides actionable data to mental health professionals",
+              },
+            ].map(({ icon: Icon, title, description }, index) => (
+              <div key={index} className="relative">
+                <div className="flex flex-col items-center text-center">
+                  <div className="bg-blue-500/10 p-6 rounded-full mb-6">
+                    <Icon className="w-10 h-10 text-blue-400" />
+                  </div>
+                  <h3 className="text-2xl font-semibold mb-4">{title}</h3>
+                  <p className="text-gray-300">{description}</p>
+                </div>
+                {index < 2 && (
+                  <div className="hidden md:block absolute top-1/4 right-0 w-1/3 h-0.5 bg-gradient-to-r from-blue-500/50 to-transparent transform translate-x-1/2" />
+                )}
               </div>
-              <p className="text-lg">{step}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Contact Us Section */}
-      <section id="contact" className="py-16 px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-          Reach Out to Us
-        </h2>
-        <form className="max-w-lg mx-auto space-y-4">
-          <input
-            type="text"
-            placeholder="Name"
-            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
-          <textarea
-            placeholder="Message"
-            className="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white h-32 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          ></textarea>
-          <button className="w-full bg-blue-500 hover:bg-blue-600 hover:scale-105 transition-transform px-4 py-3 rounded-md text-lg">
-            Submit Inquiry
-          </button>
-        </form>
+      {/* Contact Form */}
+      <section id="contact" className="py-24 px-8">
+        <div className="max-w-xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            Get in <span className="text-blue-500">Touch</span>
+          </h2>
+          <form className="space-y-6">
+            {[
+              { type: "text", placeholder: "Your Name" },
+              { type: "email", placeholder: "Your Email" },
+            ].map((input) => (
+              <input
+                key={input.type}
+                type={input.type}
+                placeholder={input.placeholder}
+                className="w-full px-6 py-4 rounded-lg bg-gray-800/50 border border-gray-700/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none transition-all"
+              />
+            ))}
+            <textarea
+              placeholder="Your Message"
+              rows={5}
+              className="w-full px-6 py-4 rounded-lg bg-gray-800/50 border border-gray-700/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none transition-all"
+            />
+            <button className="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-lg text-lg font-medium transition-all hover:scale-105">
+              Send Message
+            </button>
+          </form>
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-6 text-center text-gray-400">
-        <p>© 2024 CareTweet. All Rights Reserved.</p>
+      <footer className="py-8 text-center text-gray-400 border-t border-gray-800">
+        <p>© 2024 CareTweet. All rights reserved.</p>
       </footer>
     </div>
   );
