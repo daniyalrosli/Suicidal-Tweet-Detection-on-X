@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:8082/api/:path*', // Proxy to Backend
+        destination: 'https://caretweet-api.onrender.com/:path*',
       },
     ];
   },
