@@ -4,10 +4,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { AlertTriangle, ArrowLeft, Shield, Heart, Send, Loader2 } from "lucide-react";
 
+const API_URL = "/api/predict"; // Works for Vercel and local dev with proxy
+
 const Detect = () => {
   const [tweet, setTweet] = useState("");
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Optional: Health check example
+  // useEffect(() => {
+  //   fetch("/api/health").then(res => res.json()).then(console.log);
+  // }, []);
 
   const handleSubmit = async () => {
     if (tweet.trim() === "") return;
@@ -16,7 +23,8 @@ const Detect = () => {
     setResult(null);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/predict", {
+      // Use relative path for API
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
