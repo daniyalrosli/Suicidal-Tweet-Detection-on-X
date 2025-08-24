@@ -1,0 +1,12 @@
+{
+  "services": [
+    {
+      "type": "web",
+      "name": "caretweet-api",
+      "runtime": "python",
+      "buildCommand": "pip install -r requirements.txt",
+      "startCommand": "gunicorn app:app",
+      "plan": "free"
+    }
+  ]
+}
